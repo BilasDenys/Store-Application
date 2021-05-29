@@ -1,0 +1,8 @@
+<div class="home">
+  <div class="card-list" *ngFor="let product of products">
+    <app-product-card
+      [productProps]="product"
+      [routerLink]="['/product/', product.id]"
+    ></app-product-card>
+  </div>
+</div>

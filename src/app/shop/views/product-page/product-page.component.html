@@ -1,0 +1,22 @@
+<div class="product_detail" *ngIf="productDetail; else loading">
+  <div class="title">
+    {{ productDetail.title }}
+  </div>
+  <div class="description">
+    {{ productDetail.description }}
+  </div>
+  <div class="imag">
+    <img src="{{ productDetail.image }}" alt="{{ productDetail.title }}" />
+  </div>
+
+  <div class="category">
+    {{ productDetail.category }}
+  </div>
+
+  <div class="price">
+    {{ productDetail.price }}
+  </div>
+</div>
+<ng-template #loading>
+  <p>Loading....</p>
+</ng-template>
