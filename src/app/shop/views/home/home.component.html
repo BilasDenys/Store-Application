@@ -1,8 +1,17 @@
 <div class="home">
-  <div class="card-list" *ngFor="let product of products">
-    <app-product-card
-      [productProps]="product"
-      [routerLink]="['/product/', product.id]"
-    ></app-product-card>
-  </div>
+
+  <ng-template *ngIf="!(spinner| async);else loaderElement">
+
+    {{spinner}}
+    <div class="card-list" *ngFor="let product of (products | async)">
+      <app-product-card
+        [productProps]="product"
+      ></app-product-card>
+    </div>
+  </ng-template>
+
+  <ng-template #loaderElement>
+    <app-loader></app-loader>
+  </ng-template>
+
 </div>

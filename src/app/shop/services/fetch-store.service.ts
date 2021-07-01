@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs";
+import {ProductsInterface} from "../interfaces/Products";
 
 @Injectable({
   providedIn: 'root',
@@ -7,16 +9,15 @@ import { Injectable } from '@angular/core';
 export class FetchStoreService {
   constructor(private http: HttpClient) {}
 
-  //create sort method for fetching data from server with another price.
-  fetchAllCategories() {
+  fetchAllCategories(){
     return this.http.get('https://fakestoreapi.com/products/categories');
   }
 
-  fetchAllProducts() {
-    return this.http.get('https://fakestoreapi.com/products');
+  fetchAllProducts(): Observable<ProductsInterface[]> {
+    return this.http.get<ProductsInterface[]>('https://fakestoreapi.com/products');
   }
 
-  fetchSingleProducts(productId: string) {
+  fetchSelectedProduct(productId: string) {
     return this.http.get(`https://fakestoreapi.com/products/${productId}`);
   }
 

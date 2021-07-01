@@ -1,10 +1,10 @@
 import { SpinnerActions, SpinnerActionTypes } from './actions';
 
-export interface Store {
+export interface State {
   isLoading: boolean;
 }
 
-const initialState: Store = {
+const initialState: State = {
   isLoading: false,
 };
 export const reducer = (state = initialState, action: SpinnerActions) => {

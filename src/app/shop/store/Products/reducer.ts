@@ -1,34 +1,47 @@
-import { ProductsActions, ProductsActionTypes } from './actions';
+import {ProductsActions, ProductsActionTypes} from "./action";
 
-export interface Store {
-  product: any | undefined;
-  allProducts: any;
-  error: string | null;
+export interface State {
+  allProducts: any[];
+  singleProduct: null | {};
 }
 
-const initialState: Store = {
-  product: [],
+const initialState: State = {
   allProducts: [],
-  error: null,
-};
+  singleProduct: {},
+}
+
 
 export const reducer = (state = initialState, action: ProductsActions) => {
   switch (action.type) {
-    case ProductsActionTypes.LOAD_PRODUCT:
-      return { ...state };
-    case ProductsActionTypes.LOAD_PRODUCT_SUCCESS:
-      return { ...state, product: action.payload };
-
-    case ProductsActionTypes.LOAD_PRODUCT_EMPTY_TEMPLATE:
-      return { ...state, product: [] };
-
-    case ProductsActionTypes.LOAD_PRODUCT_FAIL:
-      return { ...state, error: action.payload };
-
-    case ProductsActionTypes.LOAD_ALL_PRODUCTS:
-      return { ...state };
-
+    case ProductsActionTypes.FETCH_ALL_PRODUCTS:
+      return {
+        ...state,
+      }
+    case ProductsActionTypes.FETCH_ALL_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        allProducts: action.payload
+      }
+    case ProductsActionTypes.FETCH_ALL_PRODUCTS_FAIL:
+      return {
+        ...state,
+        error: action.payload
+      }
+    case ProductsActionTypes.SELECT_PRODUCT:
+      return {
+        ...state,
+      }
+    case ProductsActionTypes.SELECTED_PRODUCTS:
+      return {
+        ...state,
+        singleProduct: action.payload
+      }
+    case ProductsActionTypes.REMOVE_SELECTED_PRODUCT:
+      return {
+        ...state,
+        singleProduct: null
+      }
     default:
       return state;
   }
-};
+}
